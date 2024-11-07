@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a5417a846bd34e8faa3ba6947e2f2176" Name="Diagram1">
+        <EntityTypeShape EntityType="Project_63130599Model.DanhMuc" Width="1.5" PointX="0.75" PointY="5" />
+        <EntityTypeShape EntityType="Project_63130599Model.DonHang" Width="1.5" PointX="6" PointY="10.125" />
+        <EntityTypeShape EntityType="Project_63130599Model.GioHang" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="Project_63130599Model.KhachHang" Width="1.5" PointX="3.75" PointY="8.875" />
+        <EntityTypeShape EntityType="Project_63130599Model.PhuongThuc" Width="1.5" PointX="3.75" PointY="13" />
+        <EntityTypeShape EntityType="Project_63130599Model.SanPham" Width="1.5" PointX="3" PointY="4.25" />
+        <EntityTypeShape EntityType="Project_63130599Model.SanPhamDonHang" Width="1.5" PointX="8.25" PointY="4.375" />
+        <EntityTypeShape EntityType="Project_63130599Model.SanPhamGioHang" Width="1.5" PointX="5.25" PointY="4.5" />
+        <EntityTypeShape EntityType="Project_63130599Model.sysdiagram" Width="1.5" PointX="0.75" PointY="8.375" />
+        <EntityTypeShape EntityType="Project_63130599Model.TaiKhoanAdmin" Width="1.5" PointX="8.75" PointY="8.375" />
+        <AssociationConnector Association="Project_63130599Model.FK_SanPham_DanhMuc" />
+        <AssociationConnector Association="Project_63130599Model.FK_DonHang_KhachHang" />
+        <AssociationConnector Association="Project_63130599Model.FK_DonHang_PhuongThuc" />
+        <AssociationConnector Association="Project_63130599Model.FK_SanPhamDonHang_DonHang" />
+        <AssociationConnector Association="Project_63130599Model.FK_GioHang_KhachHang" />
+        <AssociationConnector Association="Project_63130599Model.FK_SanPhamGioHang_GioHang" />
+        <AssociationConnector Association="Project_63130599Model.FK_SanPhamDonHang_SanPham" />
+        <AssociationConnector Association="Project_63130599Model.FK_SanPhamGioHang_SanPham" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

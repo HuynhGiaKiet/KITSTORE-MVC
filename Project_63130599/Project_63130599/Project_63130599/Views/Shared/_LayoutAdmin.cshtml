@@ -1,0 +1,303 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00a4e0',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .category a:hover {
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Layout -->
+    <!-- Header -->
+    <div class="fixed top-0 left-0 right-0 bg-white z-10">
+        <div class="px-[10vw] flex justify-between items-center py-4">
+            <div class="flex items-center gap-3">
+                <div class="w-[40px] h-[40px] bg-red-700 flex items-center justify-center">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <a href="/"><img class="h-[50px] w-[50px] object-cover " src="https://firebasestorage.googleapis.com/v0/b/snap-share-78f51.appspot.com/o/post%2FEDIT%20LU%2Ff4f3ad04-ef98-4302-b21b-6fd74dea27da%2FBlue_Gray_Modern_Technology_Logo-removebg-preview.pngf4f3ad04-ef98-4302-b21b-6fd74dea27da?alt=media&token=f964006d-a89c-43ff-a179-f9abc4cc561d" alt=""></a>
+            </div>
+            <form action="/home_63130599/TimKiem" method="get" class="w-[40%]">
+                <input type="text"
+                       class="bg-slate-200 h-[40px] w-[60%] px-2 outline-none placeholder:text-black"
+                       name="TuKhoa"
+                       placeholder="Tìm kiếm">
+                <button class="bg-red-700 w-[40px] cursor-pointer ml-[-5px] h-[40px] text-[#fff]">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 border-[1px] border-slate-300 text-slate-300  rounded-full flex items-center justify-center">
+                    <i class="fa-solid fa-phone"></i>
+                </div>
+                <p>HOTLINE: <strong>0948 35 2623</strong></p>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="relative text-left group cursor-pointer">
+                    <div class="text-red-700 text-[26px] ">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+
+                    <div class="absolute right-0 z-10 mt-0 w-56 origin-top-right hidden hover:block group-hover:block rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                         role="menu" aria-orientation="vertical"
+                         aria-labelledby="menu-button" tabindex="-1">
+                        <div class="py-1 font-bold" role="none">
+                            <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+                            @{ var user = Project_63130599.App_Start.SessionConfig.GetUser(); }
+                            @if (user == null)
+                            {
+                                <a href="/home_63130599/login"
+                                   class="text-gray-700 block px-4 py-2 text-sm"
+                                   role="menuitem" tabindex="-1"
+                                   id="menu-item-0">Đăng Nhập</a>
+                                <a href="/home_63130599/register"
+                                   class="text-gray-700 block px-4 py-2 text-sm"
+                                   role="menuitem" tabindex="-1"
+                                   id="menu-item-1">Đăng Ký</a>
+                            }
+                            else
+                            {
+                                <a href="/taikhoan_63130599/Setting"
+                                   class="text-gray-700 block px-4 py-2 text-sm"
+                                   role="menuitem" tabindex="-1"
+                                   id="menu-item-2">
+                                    @if (string.IsNullOrEmpty(user.Ten))
+                                    {
+                                        @user.TaiKhoan
+                                    }
+                                    else
+                                    {
+                                        @user.Ten
+
+                                    }
+                                </a>
+                                <a href="/donhang_63130599"
+                                   class="text-gray-700 block px-4 py-2 text-sm"
+                                   role="menuitem" tabindex="-1"
+                                   id="menu-item-3">Đơn hàng</a>
+                                <a href="/giohang_63130599"
+                                   class="text-gray-700 block px-4 py-2 text-sm"
+                                   role="menuitem" tabindex="-1"
+                                   id="menu-item-3">Giỏ hàng</a>
+                                <a href="/home_63130599/logout"
+                                   class="text-gray-700 block px-4 py-2 text-sm"
+                                   role="menuitem" tabindex="-1"
+                                   id="menu-item-4">Đăng xuất</a>
+                            }
+
+
+                        </div>
+                    </div>
+                </div>
+                <a href="/giohang_63130599" class="text-red-700 text-[26px]">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+            </div>
+        </div>
+        <!-- Menu -->
+        <div class="px-[5vw] flex gap-x-[30px] items-center flex-wrap py-2 bg-red-700 text-white font-bold category">
+            <a href=""><i class="fa-solid fa-house"></i></a>
+            <a href="/">Trang Chủ</a>
+            <a href="/home_63130599/danhmuc?idDanhMuc=BMC001">Bo Mạch Chủ</a>
+            <a href="/home_63130599/danhmuc?idDanhMuc=BVXL002">Bộ Vi Xử Lý</a>
+            <a href="/home_63130599/danhmuc?idDanhMuc=CMH003">Card Màn Hình</a>
+            <a href="/home_63130599/danhmuc?idDanhMuc=NMT004">Nguồn Máy Tính</a>
+            <a href="/home_63130599/danhmuc?idDanhMuc=R005">Ram</a>
+            <a href="/home_63130599/danhmuc?idDanhMuc=TN006">Tản Nhiệt</a>
+            <a href="/home_63130599/danhmuc?idDanhMuc=HDD007">Ổ Cứng HDD</a>
+            <a href="/home_63130599/danhmuc?idDanhMuc=SSD008">Ổ Cứng SSD</a>
+            <a href="/home_63130599/danhmuc?idDanhMuc=SPK009">Sản Phẩm Khác</a>
+
+            @*<a href="">Powerhouse</i></a>
+        <a href="">KITSTOREWork</i></a>
+        <a href="">Nebula</i></a>
+        <a href="">Eufy</i></a>*@
+        </div>
+    </div>
+
+    <div class="mt-[116px] ">@RenderBody()</div>
+
+    <!-- Info -->
+    <div class="bg-red-700 px-[10vw] text-white flex gap-8 py-10">
+        <div class="w-2/3 flex flex-col gap-y-4 border-r">
+            <h3 class="font-bold">
+                Sự tin tưởng của bạn là vinh dự của chúng tôi
+            </h3>
+            <p>
+                Bắt đầu thành lập từ năm 2023 với tư cách là đại diện phân phối
+                các sản phẩm của A tại Việt Nam. Chúng tôi tự hào thông
+                báo rằng tất cả các sản phẩm đều được đảm bảo là hàng chính
+                hãng,đảm bảo chất lượng tốt nhất cùng với chính sách bảo hành
+                và chăm sóc chu đáo.
+            </p>
+            <div>
+                <strong>Showroom:</strong>
+                <br>
+                <p>- 2 Đ. Nguyễn Đình Chiểu, Vĩnh Thọ, Nha Trang, Khánh Hòa.</p>
+                <p>- Giờ làm việc: 7:30 - 22:00 (Cả thứ 7 & CN)</p>
+            </div>
+            <div>
+                <p>
+                    <i class="fa-solid fa-phone"></i> Hotline: 0948 35 2623 -
+                    0123 45 6789
+                </p>
+                <p>Liên Hệ Bảo Hành & Hỗ Trợ Kỹ Thuật:</p>
+                <p>- 0123 45 6789 (Phím 0)</p>
+                <p>- 0948 35 2623</p>
+            </div>
+            <p>Liên hệ hợp tác: kiet.hg.63cntt@ntu.edu.vn</p>
+        </div>
+        <div class="flex flex-col gap-y-4  border-r pr-4">
+            <h3 class="font-bold">Thông tin</h3>
+            <ul class="flex flex-col gap-y-2">
+                <li>Giới thiệu</li>
+                <li>Đăng ký đại lý KITSTORE</li>
+                <li>Khách hàng dự án</li>
+                <li>Tuyển dụng</li>
+            </ul>
+        </div>
+
+        <div class="flex flex-col gap-y-4  ">
+            <h3 class="font-bold">Chính sách</h3>
+            <ul class="flex flex-col gap-y-2">
+                <li>Chính Sách Bảo Mật</li>
+                <li>Điều Khoản Sử Dụng</li>
+                <li>Quy Định Bảo Hành</li>
+                <li>Chính Sách Đổi Trả</li>
+                <li>Phương Thức Thanh Toán</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Footer -->
+    <div class="px-[10vw] py-6 text-center">
+        <p>
+            &copy; 2023 - Bản quyền của Huỳnh Gia Kiệt - Trụ sở:
+            2 Đ. Nguyễn Đình Chiểu, Vĩnh Thọ, Nha Trang, Khánh Hòa.
+        </p>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <!-- ✅ load Slick ✅ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"
+            integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.slide-product-1').slick({
+                slidesToShow: 6,
+                slidesToScroll: 3,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                responsive: [
+                    {
+                        breakpoint: 1500,
+                        settings: {
+                            slidesToShow: 5,
+                            slidesToScroll: 3,
+                            infinite: true,
+                            dots: true
+                        }
+                    },
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 3,
+                            infinite: true,
+                            dots: true
+                        }
+                    },
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 2
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                    // You can unslick at a given breakpoint now by adding:
+                    // settings: "unslick"
+                    // instead of a settings object
+                ]
+            });
+            $('.slide-product-2').slick({
+                slidesToShow: 4,
+                slidesToScroll: 3,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                responsive: [
+                    {
+                        breakpoint: 1500,
+                        settings: {
+                            slidesToShow: 4,
+                            slidesToScroll: 2,
+                            infinite: true,
+                            dots: true
+                        }
+                    },
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 3,
+                            infinite: true,
+                            dots: true
+                        }
+                    },
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 2
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                    // You can unslick at a given breakpoint now by adding:
+                    // settings: "unslick"
+                    // instead of a settings object
+                ]
+            });
+
+        });
+    </script>
+</body>
+
+</html>
